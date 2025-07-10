@@ -1,10 +1,10 @@
 /**
  * BidStream - Real-Time Trading & Auction Platform.
- * 
+ *
  * <p>
  * Root package containing the main application class and core configuration.
  * </p>
- * 
+ *
  * <p>
  * Sub-package organization:
  * </p>
@@ -17,7 +17,7 @@
  * <li>{@code exception} - Custom exception handling</li>
  * <li>{@code util} - Utility classes and helpers</li>
  * </ul>
- * 
+ *
  * @author Carlos Salguero
  * @version 1.0.0
  */

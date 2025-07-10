@@ -40,6 +40,13 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 public final class BidstreamApplication {
 
   /**
+   * Private constructor to prevent instantiation.
+   */
+  private BidstreamApplication() {
+    // Private constructor to hide implicit public one
+  }
+
+  /**
    * Main entry point for the Spring Boot application.
    *
    * @param args command line arguments passed to the application
