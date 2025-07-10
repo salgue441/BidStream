@@ -21,29 +21,28 @@ jobs:
   code-quality:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-
-      - name: Set up JDK ${{ env.JAVA_VERSION }}
+      - uses: actions/checkout@v4
+      
+      - name: Setup Java 21
         uses: actions/setup-java@v4
         with:
-          java-version: ${{ env.JAVA_VERSION }}
-          distribution: "temurin"
-          cache: maven
-
-      - name: Cache SonarCloud packages
-        uses: actions/cache@v4
-        with:
-          path: ~/.sonar/cache
-          key: ${{ runner.os }}-sonar
-          restore-keys: ${{ runner.os }}-sonar
-
-      - name: Run backend code quality checks
+          distribution: 'temurin'
+          java-version: '21'
+          cache: 'maven'
+          
+      - name: Validate setup
+        run: |
+          java -version
+          javac -version
+          
+      - name: Build with Maven
         working-directory: ./apps/backend
         run: |
-          ./mvnw clean compile --no-transfer-progress
+          ./mvnw clean compile --no-transfer-progress -DskipTests
+          
+      - name: Run checks
+        working-directory: ./apps/backend
+        run: |
           ./mvnw checkstyle:check spotbugs:check
 
   security-scan:
