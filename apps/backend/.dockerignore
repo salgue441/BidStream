@@ -1,0 +1,55 @@
+# General ignores
+.git/
+.gitignore
+*.md
+LICENSE
+README.md
+*.log
+*.bak
+*.swp
+*.swo
+.DS_Store
+.idea/
+.vscode/
+target/
+*.iml
+
+# Maven specific
+.mvn/
+mvnw
+mvnw.cmd
+pom.xml
+!pom.xml
+!target/*.jar
+!target/classes/
+!target/dependency/
+
+# Frontend files (if any)
+node_modules/
+public/
+static/
+
+# Environment and config files
+.env
+*.properties
+*.yml
+!application.yml
+!bootstrap.yml
+
+# Docker compose files
+docker-compose*.yml
+!docker-compose.yml
+
+# Database files
+*.db
+*.sql
+/db/migration/
+!db/migration/*.sql
+
+# Logs
+logs/
+*.log
+
+# Temp files
+tmp/
+*.tmp
