@@ -29,19 +29,15 @@ jobs:
           cache: 'maven'
           check-latest: true 
 
-      - name: Setup Maven Wrapper
+      - name: Fix Maven Wrapper Permissions
         working-directory: ./apps/backend
-        run: | 
-          mvn -N io.takari:maven:wrapper -Dmaven=3.9.6
-          chmod +x mvnw
-          ./mvnw -v
-
-      - name: Verify Java Environment
         run: |
-          echo "JAVA_HOME: $JAVA_HOME"
-          java -version
-          javac -version
-          ./apps/backend/mvnw -v
+          chmod +x mvnw
+          ls -la mvnw  # Verify permissions
+
+      - name: Verify Maven Wrapper
+        working-directory: ./apps/backend
+        run: ./mvnw -v 
 
       - name: Build and Test
         working-directory: ./apps/backend
