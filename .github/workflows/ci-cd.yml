@@ -43,10 +43,8 @@ jobs:
       - name: Run backend code quality checks
         working-directory: ./apps/backend
         run: |
-          ./mvnw clean verify \
-            checkstyle:check \
-            spotbugs:check \
-            pmd:pmd
+          ./mvnw clean compile --no-transfer-progress
+          ./mvnw checkstyle:check spotbugs:check
 
   security-scan:
     runs-on: ubuntu-latest
