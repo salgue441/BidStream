@@ -10,15 +10,15 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 /**
  * BidStream - Real-Time Trading & Auction Platform
- * 
+ *
  * <p>
  * Main Spring Boot application class that bootstraps the entire application.
  * </p>
- * 
+ *
  * <p>
  * Features enabled:
  * </p>
- * 
+ *
  * <ul>
  * <li>JPA Auditing for automatic createdAt/updatedAt timestamps.</li>
  * <li>Caching for improved performance</li>
@@ -26,7 +26,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
  * <li>Scheduling for auction management tasks</li>
  * <li>Transaction management for data consistency</li>
  * </ul>
- * 
+ *
  * @author Carlos Salguero
  * @version 1.0.0
  * @since 1.0.0
@@ -37,20 +37,14 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableAsync
 @EnableScheduling
 @EnableTransactionManagement
-public class BidstreamApplication {
-  /**
-   * Private constructor to prevent instantiation (utility class pattern).
-   */
-  private BidstreamApplication() {
-    throw new UnsupportedOperationException("This is a utility class and cannot be instantiated");
-  }
+public final class BidstreamApplication {
 
   /**
    * Main entry point for the Spring Boot application.
    *
    * @param args command line arguments passed to the application
    */
-  public static void main(String[] args) {
+  public static void main(final String[] args) {
     SpringApplication.run(BidstreamApplication.class, args);
   }
 }

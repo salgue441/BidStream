@@ -16,7 +16,7 @@ import java.util.Map;
  */
 @RestController
 @RequestMapping("/health")
-public final class HealthController {
+public class HealthController {
   /**
    * The name of the application from configuration.
    */
@@ -43,7 +43,7 @@ public final class HealthController {
 
   /**
    * Provides version information for the application.
-   * 
+   *
    * @return ResponseEntity containing application name, version number, and
    *         environment
    */

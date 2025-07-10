@@ -15,17 +15,18 @@ import org.springframework.security.web.SecurityFilterChain;
  */
 @Configuration
 @EnableWebSecurity
-public final class SecurityConfig {
+public class SecurityConfig {
 
   /**
    * Configures the security filter chain for HTTP requests.
-   * 
+   *
    * @param http the HttpSecurity to modify
    * @return the build SecurityFilterChain
    * @throws Exception if an error occurs during configuration
    */
   @Bean
-  public SecurityFilterChain securityFilterChain(final HttpSecurity http) throws Exception {
+  public SecurityFilterChain securityFilterChain(final HttpSecurity http)
+      throws Exception {
     http
         .csrf(csrf -> csrf.disable())
         .authorizeHttpRequests(auth -> auth.anyRequest().permitAll());
@@ -36,7 +37,7 @@ public final class SecurityConfig {
   /**
    * Provides a password enconder bean for the application.
    * Uses BCrypt strong hashing algorithm for password encoding.
-   * 
+   *
    * @return the password encoder implementation
    */
   @Bean
