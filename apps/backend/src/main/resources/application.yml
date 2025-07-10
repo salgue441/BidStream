@@ -1,0 +1,74 @@
+spring:
+  application:
+    name: bidstream-backend
+
+  profiles:
+    active: ${SPRING_PROFILES_ACTIVE:dev}
+
+  datasource:
+    url: ${DATABASE_URL:jdbc:postgresql://localhost:5432/bidstream}
+    username: ${DATABASE_USERNAME:bidstream}
+    password: ${DATABASE_PASSWORD:bidstream}
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      maximum-pool-size: 10
+      minimum-idle: 2
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+    open-in-view: false
+
+  data:
+    redis:
+      host: ${REDIS_HOST:localhost}
+      port: ${REDIS_PORT:6379}
+      timeout: 2000ms
+
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+    baseline-on-migrate: true
+
+server:
+  port: ${SERVER_PORT:8080}
+  servlet:
+    context-path: /api
+
+# Disable management security for MVP
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,prometheus
+  endpoint:
+    health:
+      show-details: always
+  security:
+    enabled: false
+
+logging:
+  level:
+    com.bidstream: DEBUG
+    org.springframework: INFO
+    org.hibernate.SQL: DEBUG
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"
+
+# Application specific properties
+bidstream:
+  jwt:
+    secret: ${JWT_SECRET:dev-secret-key-change-in-production}
+    expiration: ${JWT_EXPIRATION:86400000} # 24 hours
+
+  websocket:
+    allowed-origins: ${WEBSOCKET_ALLOWED_ORIGINS:http://localhost:3000}
+
+  auction:
+    min-bid-increment: ${MIN_BID_INCREMENT:1.00}
+    max-auction-duration: ${MAX_AUCTION_DURATION:7} # days
