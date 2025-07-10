@@ -11,14 +11,24 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Health check controller to verify the application is running correctly
+ * Health check controller to verify the application is running correctly.
+ * Provides endpoints for health status and version information.
  */
 @RestController
 @RequestMapping("/health")
-public class HealthController {
+public final class HealthController {
+  /**
+   * The name of the application from configuration.
+   */
   @Value("${spring.application.name}")
   private String applicationName;
 
+  /**
+   * Provides health check information for the application.
+   *
+   * @return ResponseEntity containing health status, application
+   *         name, timestamp, and status message
+   */
   @GetMapping
   public ResponseEntity<Map<String, Object>> health() {
     Map<String, Object> health = new HashMap<>();
@@ -31,6 +41,12 @@ public class HealthController {
     return ResponseEntity.ok(health);
   }
 
+  /**
+   * Provides version information for the application.
+   * 
+   * @return ResponseEntity containing application name, version number, and
+   *         environment
+   */
   @GetMapping("/version")
   public ResponseEntity<Map<String, String>> version() {
     Map<String, String> version = new HashMap<>();
